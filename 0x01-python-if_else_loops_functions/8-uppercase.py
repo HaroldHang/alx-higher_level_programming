@@ -4,4 +4,3 @@ def uppercase(c):
         return True
     else: 
         return False
-
