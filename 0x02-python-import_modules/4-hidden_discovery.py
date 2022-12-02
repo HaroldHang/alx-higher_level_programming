@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-import compileall
-import marshal
+import hidden_4
 if __name__ == "__main__":
-    s=compileall.compile_file('hidden_4.pyc')
-    print("Hello World")
-    print(s)
+    mods = dir(hidden_4)
+    for i in range(0, len(mods)):
+        if mods[i][0] == "_":
+            continue
+        else:
+            print(mods[i])
