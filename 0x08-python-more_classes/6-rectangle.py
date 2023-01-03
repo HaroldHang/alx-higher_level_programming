@@ -72,25 +72,27 @@ class Rectangle:
         return ((self.__width + self.__height) * 2)
     
     def __str__(self):
-        """Return the printable representation of the Rectangle.
-        Represents the rectangle with the # character.
-        """
-        if self.__width == 0 or self.__height == 0:
-            return ("")
+        '''Returns a string representation of this Rectangle.
+        Returns:
+            str: A string representation of this Rectangle.
+        '''
+        if self.width == 0 or self.height == 0:
+            return ''
+        else:
+            res = list(map(
+                lambda x: '#' * self.width + '\n' * (x != self.height - 1),
+                range(self.height)))
+            return ''.join(res)
 
-        rect = []
-        for i in range(self.__height):
-            [rect.append('#') for j in range(self.__width)]
-            if i != self.__height - 1:
-                rect.append("\n")
-        return ("".join(rect))
     def __repr__(self):
-        """Return the string representation of the Rectangle."""
-        rect = "Rectangle(" + str(self.__width)
-        rect += ", " + str(self.__height) + ")"
-        return (rect)
+        '''Returns a representation of this Rectangle's initialization.
+        Returns:
+            str: A string representation of this Rectangle's initialization.
+        '''
+        return 'Rectangle({:d}, {:d})'.format(self.width, self.height)
 
     def __del__(self):
-        """Print a message for every deletion of a Rectangle."""
-        type(self).number_of_instances -= 1
-        print("Bye rectangle...")
+        '''Performs some routines after an object is deleted.
+        '''
+        print('Bye rectangle...')
+        Rectangle.number_of_instances -= 1
