@@ -4,7 +4,11 @@ import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    myDb = MySQLdb.connect(host="localhost", user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    loc = "localhost"
+    user = sys.argv[1]
+    pas = sys.argv[2]
+    db = sys.argv[3]
+    myDb = MySQLdb.connect(host=loc, user=user, passwd=pas, db=db, port=3306)
     cur = myDb.cursor()
     cur.execute("SELECT * FROM states")
     rows = cur.fetchall()
