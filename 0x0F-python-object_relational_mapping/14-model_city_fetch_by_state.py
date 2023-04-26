@@ -9,12 +9,11 @@ from sqlalchemy.orm import sessionmaker
 
 
 if __name__ == "__main__":
-    user = sys.argv[1]
-    pas = sys.argv[2]
-    db = sys.argv[3]
-    myEngine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(user, pas, db))
-    Base.metadata.create_all(myEngine)
-    Session = sessionmaker(bind=myEngine)
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
     session = Session()
-    for instance in (session.query(State.name, City.id, City.name).filter(State.id == City.state_id)):
+    for instance in (session.query(State.name, City.id, City.name)
+                     .filter(State.id == City.state_id)):
         print(instance[0] + ": (" + str(instance[1]) + ") " + instance[2])
